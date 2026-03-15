@@ -67,3 +67,4 @@ Opção:
 6 - 📊  Relatório / Totais
 7 - ✅  Concluir compra
 0 - 🚪  Sair
+```
