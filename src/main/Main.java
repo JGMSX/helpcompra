@@ -35,12 +35,11 @@ public class Main {
         sc.close();
     }
 
-
-    //  BOAS VINDAS
+//  BOAS VINDAS
 
     private static void menuBoasVindas() {
         System.out.println("🛒🛒  Bem vindo ao HELPCOMPRA - AJUDANTE DE COMPRAS 🛒🛒");
-        System.out.println("\nVocê tem um limite de gastos para essa compra?");
+        System.out.println("\nVocê deseja definir um limite de gastos para essa compra?");
         System.out.println("  1 - Sim, quero definir um limite");
         System.out.println("  2 - Não, só quero montar a lista");
         int op = lerInt("Opção: ");
@@ -48,33 +47,32 @@ public class Main {
         if (op == 1) {
             double limite = lerDouble("Qual o limite? R$ ");
             service.setLimiteGastos(limite);
-            System.out.printf("✅ Limite de R$ %.2f definido!%n", limite);
+            System.out.printf(" Limite de R$ %.2f definido!%n", limite);
         } else {
             System.out.println("Ok! Sem limite definido.");
         }
     }
 
-    //  MENU PRINCIPAL
+//  MENU PRINCIPAL
 
     private static void exibirMenuPrincipal() {
-        System.out.println();
-        System.out.println("");
-        System.out.println("🛒🛒🛒  AJUDANTE DE COMPRAS");
-        System.out.println("");
-        System.out.println("1 - ➕  Adicionar produto");
-        System.out.println("2 - 📋  Listar produtos");
-        System.out.println("3 - 🔍  Buscar produto");
-        System.out.println("4 - ✏️   Editar produto");
-        System.out.println("5 - 🗑️   Remover produto");
-        System.out.println("6 - 📊  Relatório / Totais");
-        System.out.println("7 - ✅  Concluir compra");
-        System.out.println("0 - 🚪  Sair");
-    }
+    System.out.println(
+        "\n Bem vindo ao AJUDANTE DE COMPRAS. Digite uma opção: \n\n" +
+        "1 - Adicionar produto\n" +
+        "2 - Listar produtos\n" +
+        "3 - Buscar produto\n" +
+        "4 - Editar produto\n" +
+        "5 - Remover produto\n" +
+        "6 - Relatório / Totais\n" +
+        "7 - Concluir compra\n" +
+        "0 - Sair\n"
+    );
+}
 
-    //  ADICIONAR
+//  ADICIONAR
 
     private static void menuAdicionar() {
-        System.out.println("\n── ADICIONAR PRODUTO ──");
+        System.out.println("\n ADICIONAR PRODUTO");
         System.out.println("  1 - Por UNIDADE (ex: caixa de leite, sabão)");
         System.out.println("  2 - Por KG      (ex: carne, fruta, legume)");
         System.out.print("Tipo: ");
@@ -104,15 +102,14 @@ public class Main {
         }
     }
 
-    // ═══════════════════════════════════════════════
-    //  LISTAR
-    // ═══════════════════════════════════════════════
+//  LISTAR
+
     private static void menuListar() {
-        System.out.println("\n── LISTA DE COMPRAS ──");
+        System.out.println("\nLISTA DE COMPRAS");
         List<Produto> produtos = service.listarTodos();
 
         if (produtos.isEmpty()) {
-            System.out.println("🗒️  A lista está vazia.");
+            System.out.println("Que pena! A lista está vazia :( ");
             return;
         }
 
@@ -129,11 +126,10 @@ public class Main {
                 service.totalItens(), service.calcularTotalGeral());
     }
 
-    // ═══════════════════════════════════════════════
-    //  BUSCAR
-    // ═══════════════════════════════════════════════
+//  BUSCAR
+
     private static void menuBuscar() {
-        System.out.println("\n── BUSCAR ──");
+        System.out.println("\n BUSCAR");
         System.out.println("  1 - Por ID");
         System.out.println("  2 - Por Categoria");
         int op = lerInt("Opção: ");
@@ -162,10 +158,10 @@ public class Main {
     }
 
 
-    //  EDITAR
+//  EDITAR
 
     private static void menuEditar() {
-        System.out.println("\n── EDITAR PRODUTO ──");
+        System.out.println("\n EDITAR PRODUTO");
         int id = lerInt("ID do produto a editar: ");
         Optional<Produto> opt = service.buscarPorId(id);
 
@@ -176,7 +172,7 @@ public class Main {
 
         Produto p = opt.get();
         System.out.println("Produto atual: " + p);
-        System.out.println("\nO que deseja alterar?");
+        System.out.println("\n O que deseja alterar?");
         System.out.println("  1 - Nome");
         System.out.println("  2 - Preço");
 
@@ -218,10 +214,10 @@ public class Main {
     }
 
 
-    //  REMOVER
+//  REMOVER
 
     private static void menuRemover() {
-        System.out.println("\n── REMOVER PRODUTO ──");
+        System.out.println("\nREMOVER PRODUTO");
         System.out.println("  1 - Remover por ID");
         System.out.println("  2 - Limpar toda a lista");
         int op = lerInt("Opção: ");
@@ -243,13 +239,13 @@ public class Main {
     }
 
 
-    //  RELATÓRIO
+//  RELATÓRIO
 
     private static void menuRelatorio() {
-        System.out.println("\n── RELATÓRIO DE COMPRAS ──");
+        System.out.println("\nRELATÓRIO DE COMPRAS");
 
         if (service.totalItens() == 0) {
-            System.out.println("🗒️  A lista está vazia.");
+            System.out.println("Que pena! A lista está vazia :(");
             return;
         }
 
@@ -282,7 +278,7 @@ public class Main {
     	List<Produto> produtos = service.listarTodos();
 
     if (produtos.isEmpty()) {
-        System.out.println("A lista está vazia.");
+        System.out.println("Que pena! A lista está vazia :(");
         return;
     }
 
@@ -313,7 +309,7 @@ public class Main {
             try {
                 return Integer.parseInt(linha);
             } catch (NumberFormatException e) {
-                System.out.println("⚠️  Digite um número inteiro válido.");
+                System.out.println("⚠️  Digite um número válido.");
             }
         }
     }
@@ -325,7 +321,7 @@ public class Main {
             try {
                 return Double.parseDouble(linha);
             } catch (NumberFormatException e) {
-                System.out.println("⚠️  Digite um valor numérico válido (ex: 3.50).");
+                System.out.println("⚠️  Digite um valor numérico válido.");
             }
         }
     }
